@@ -9,6 +9,13 @@ Template.topnav_account.events({
                 $('.logineveonlines').hide();
                 $('.logineveonlines-uiorg').show();
             }
+
+            if (Meteor.userId()) {
+                Meteor.subscribe('user_apikeys')
+                if (Apikeys.find({'state': 'ok'}).count() == 0) {
+                    Router.go("apikeys");
+                }
+            }
         });
     },
     'click .logout': function () {
