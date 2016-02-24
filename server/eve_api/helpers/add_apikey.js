@@ -16,5 +16,6 @@ APIHELPERS.add_apikey = function(userID, keyid, vcode) {
         'keyid': keyid,
         'vcode': vcode,
         'state': 'new',
+        'created': new Date(),
     });
 }
