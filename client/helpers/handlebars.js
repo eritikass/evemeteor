@@ -12,3 +12,16 @@ Handlebars.registerHelper('currentRouteName', function(myArgument){
         return 'notFound';
     }
 });
+
+
+Handlebars.registerHelper('formatDate', function(date, type){
+    type = type || 'date';
+    if (!date) {
+        return '-';
+    }
+    var m = moment(date).utc();
+    if (type == 'time') {
+        return m.format('HH:mm:ss');
+    }
+    return m.format('YYYY-MM-DD HH:mm');
+});
