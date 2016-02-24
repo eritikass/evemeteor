@@ -15,13 +15,14 @@ APIHELPERS.update = function() {
 */
     Apikeys.find({'state': 'new'}, {limit: 10}).forEach(function(key) {
         try {
+            var init_state = key.state;
 
-            if (key.state == 'process') {
+            if (init_state == 'process') {
                 return;
             }
 
             Apikeys.update(key._id, {$set: {
-                state: 'process',
+                //state: 'process',
                 updated: new Date(),
             }});
 
@@ -67,7 +68,7 @@ APIHELPERS.update = function() {
                 }
 
                 Apikeys.update(key._id, {$set: {
-                    state: 'ok',
+                    //state: 'ok',
                     type: result.type,
                     accessMask: result.accessMask,
                     expires: APIHELPERS.evedate(result.expires),
@@ -76,12 +77,20 @@ APIHELPERS.update = function() {
                     info: info,
                 }});
 
+                if ((init_state == 'new') && (result.type == 'Corporation')) {
+                    APIHELPERS.update_towers(key._id);
+                }
+                if ((init_state == 'new') && (result.type == 'Account')) {
+                    APIHELPERS.update_characters(key._id);
+                }
+
+
             }));
 
 
         } catch (e) {
             Apikeys.update(key._id, {$set: {
-                state: 'errjs',
+                state: 'errj1',
                 updated: new Date(),
             }});
         }

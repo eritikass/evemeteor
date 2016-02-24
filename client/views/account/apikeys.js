@@ -28,9 +28,9 @@ Template.apikeys.helpers({
                 return 'question-sign';
         }
     },
-    'keyinfo': function() {
+    'keyInfo': function() {
         if (this.info) {
-            return row.info;
+            return this.info;
         }
         if (this.state == 'new') {
             return 'waiting for processing...';
@@ -38,7 +38,7 @@ Template.apikeys.helpers({
         if (this.state == 'process') {
             return 'process';
         }
-        return 'unknown, state=' + row.state;
+        return 'unknown, state=' + this.state + (this.state == 'errapi'&&this.errCode ? ', code: ' + this.errCode : '');
     },
     'rowClass': function(row) {
         var state = this.state && this.state || '';
