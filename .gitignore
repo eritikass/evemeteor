@@ -7,3 +7,8 @@
 # npm packages
 packages
 
+# meteror up x deploy config
+.deploy
+
+# test stuff
+test.js
