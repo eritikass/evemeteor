@@ -1,0 +1,39 @@
+<template name="apikey_add">
+
+    <h1>Add New Api Key</h1>
+
+    <form accept-charset="UTF-8" class="formtastic new_eve_api_key" id="new_eve_api_key">
+        <fieldset class="inputs">
+            <div class="number input optional numeric stringish form-group" id="eve_api_key_key_id_input">
+                <label class=" control-label" for="eve_api_key_key_id">Key-ID:<abbr title="required">*</abbr></label>
+                <span class="form-wrapper">
+                    <input class="form-control" id="eve_api_key_key_id" name="eve_api_key_id" step="any" type="number">
+                </span>
+            </div>
+            <div class="string input required stringish form-group" id="eve_api_key_v_code_input">
+                <label class=" control-label" for="eve_api_key_v_code">V-Code:<abbr title="required">*</abbr></label>
+                <span class="form-wrapper">
+                    <input class="form-control" id="eve_api_key_v_code" maxlength="255" name="eve_api_v_code" type="text">
+                </span>
+            </div>
+        </fieldset>
+        <fieldset class="form-actions">
+            <input class="btn btn-primary" id="eve_api_key_submit_action" name="commit" type="submit"
+                   value="Add Api Key">
+        </fieldset>
+    </form>
+    <br>
+
+    <div class="btn-group">
+        <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=1073741823"
+           class="btn btn-default btn-xs" target="_blank">Character all predefined</a>
+        <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=67108863"
+           class="btn btn-default btn-xs" target="_blank">Corporation all predefined</a>
+    </div>
+
+    <br>
+
+    <br>
+    <a class="btn btn-default" href="{{pathFor route='apikeys'}}">Back</a>
+
+</template>

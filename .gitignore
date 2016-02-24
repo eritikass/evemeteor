@@ -1,0 +1,9 @@
+# meteor stuff
+.meteor/local
+
+#editor settings
+.idea
+
+# npm packages
+packages
+
