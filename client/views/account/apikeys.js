@@ -12,21 +12,46 @@ Template.apikeys.helpers({
             case 'new':
                 return 'minus';
                 break;
-
+            case 'ok':
+                if (type == 'Corporation') {
+                    return 'list-alt';
+                }
+                return 'ok';
+                break;
+            case 'process':
+                return 'refresh';
+                break;
             default:
+                if (state.substr(0, 3) == 'err') {
+                    return 'remove';
+                }
                 return 'question-sign';
         }
     },
-    'keyinfo': function(row) {
-        if (row.info) {
+    'keyinfo': function() {
+        if (this.info) {
             return row.info;
         }
-        if (row.state == 'new') {
+        if (this.state == 'new') {
             return 'waiting for processing...';
         }
-        if (row.state == 'process') {
+        if (this.state == 'process') {
             return 'process';
         }
         return 'unknown, state=' + row.state;
+    },
+    'rowClass': function(row) {
+        var state = this.state && this.state || '';
+        if (state.substr(0, 3) == 'err') {
+            return 'danger';
+        } else if (state == 'new' || state == 'process') {
+            return 'info';
+        } else if (state == 'ok') {
+            if (this.type && this.type == 'Corporation') {
+                return 'success success-corp';
+            }
+            return 'success';
+        }
+
     }
 });

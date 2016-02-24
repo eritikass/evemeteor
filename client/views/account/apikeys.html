@@ -11,25 +11,25 @@
     <table class="table">
         <thead>
         <tr>
-            <th>#</th>
+            <th colspan="1">#</th>
             <th>Key</th>
+            <th>Type</th>
             <th>Access Mask</th>
             <th>Info</th>
-            <th>Last update</th>
+            <th>Updated</th>
         </tr>
         </thead>
         <tbody>
         {{#each getApikeys}}
-            <tr class="active">
+            <tr class="{{rowClass}}">
                 <th scope="row">
                     <span class="glyphicon glyphicon-{{stateGymp state type}}" aria-hidden="true"></span>
                 </th>
-                <td>
-                    {{keyid}}
-                </td>
-                <td>{{accessmask}}</td>
-                <td>{{keyinfo this}}</td>
-                <td>{{formatDate lastfetch}}</td>
+                <td>{{keyid}}</td>
+                <td>{{type}}</td>
+                <td>{{accessMask}}</td>
+                <td>{{keyinfo}}</td>
+                <td>{{formatDate updated}}</td>
             </tr>
         {{/each}}
         </tbody>

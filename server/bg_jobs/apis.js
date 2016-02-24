@@ -28,6 +28,4 @@ var addBgJob = function(methodName, callback) {
 }
 
 
-addBgJob('api_root', function() {
-    return 'kass';
-});
+addBgJob('api_root', APIHELPERS.update);

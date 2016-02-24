@@ -8,6 +8,7 @@ APIHELPERS.evedate = function(datestr) {
         return null;
     }
 
+    // TODO: FIXME!! better date parse option that writing in +00 ?????
     var m = moment(datestr + '+00');
     return m.isValid() ? m.toDate() : null;
 }
