@@ -9,7 +9,7 @@ APIHELPERS.update_towers = function(api_id) {
     var transliteration = Meteor.npmRequire('transliteration');
 
     var key = Apikeys.findOne(api_id);
-    if (!key || key.type != 'Corporation') { //  || key.state != 'ok'
+    if (!key || key.type != 'Corporation'|| key.state != 'ok') {
         return;
     }
 
@@ -37,6 +37,7 @@ APIHELPERS.update_towers = function(api_id) {
             tower.state_api = parseInt(tower.state, 10);
 
             tower.state = 'ok';
+            tower.state_date = new Date();
 
 
             tower.stateTimestamp = APIHELPERS.evedate(tower.stateTimestamp);

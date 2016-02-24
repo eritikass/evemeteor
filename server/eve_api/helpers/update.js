@@ -22,7 +22,7 @@ APIHELPERS.update = function() {
             }
 
             Apikeys.update(key._id, {$set: {
-                //state: 'process',
+                state: 'process',
                 updated: new Date(),
             }});
 
@@ -68,7 +68,7 @@ APIHELPERS.update = function() {
                 }
 
                 Apikeys.update(key._id, {$set: {
-                    //state: 'ok',
+                    state: 'ok',
                     type: result.type,
                     accessMask: result.accessMask,
                     expires: APIHELPERS.evedate(result.expires),
