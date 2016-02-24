@@ -1,6 +1,13 @@
 <template name="apikeys">
 
 
+    <button type="button" class="btn btn-primary btn-lg btn-block">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Add api key
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+
+
     <table class="table">
         <thead>
         <tr>
@@ -8,17 +15,23 @@
             <th>Key</th>
             <th>Access Mask</th>
             <th>Info</th>
-            <th>Last fetch</th>
+            <th>Last update</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="active">
-            <th scope="row">1</th>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-        </tr>
+        {{#each getApikeys}}
+            <tr class="active">
+                <th scope="row">
+                    <span class="glyphicon glyphicon-{{stateGymp state type}}" aria-hidden="true"></span>
+                </th>
+                <td>
+                    {{keyid}}
+                </td>
+                <td>{{accessmask}}</td>
+                <td>{{keyinfo this}}</td>
+                <td>{{formatDate lastfetch}}</td>
+            </tr>
+        {{/each}}
         </tbody>
     </table>
 
