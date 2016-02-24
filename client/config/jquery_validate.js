@@ -16,7 +16,8 @@ $.validator.setDefaults({
     rules: {
         eve_api_key_id: {
             required: true,
-            digits: true
+            digits: true,
+            maxlength: 12
         },
         eve_api_v_code: {
             required: true,
