@@ -1,0 +1,36 @@
+<template name="towers">
+
+
+    <table class="table table-bordered">
+
+        <thead>
+        <tr>
+            <th colspan="1">#</th>
+            <th>System</th>
+            <th>Planet</th>
+            <th>Moon</th>
+            <th>Region</th>
+            <th>towerType</th>
+            <th>...</th>
+            <th>...</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{#each getTowers}}
+            <tr class="{{rowClass}}">
+                <th>{{countdown fuelLeftUntil}}</th>
+                <td>{{systemName}}</td>
+                <td>{{celdata.planet}}</td>
+                <td>{{celdata.moon}}</td>
+                <td>{{regionName}}</td>
+                <td>{{getTowerTypeName typeID}}</td>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+        {{/each}}
+        </tbody>
+
+    </table>
+
+</template>
