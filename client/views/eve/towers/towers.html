@@ -11,7 +11,7 @@
             <th>Moon</th>
             <th>Region</th>
             <th>towerType</th>
-            <th>...</th>
+            <th>corp</th>
             <th>...</th>
         </tr>
         </thead>
@@ -25,8 +25,8 @@
                 <td>{{celdata.moon}}</td>
                 <td>{{regionName}}</td>
                 <td>{{getTowerTypeName typeID}}</td>
-                <td>...</td>
-                <td>...</td>
+                <td>{{getCorpName key_id}}</td>
+                <td>{{_id}}</td>
             </tr>
         {{/each}}
         </tbody>

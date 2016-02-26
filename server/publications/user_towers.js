@@ -7,7 +7,8 @@ Meteor.publish('user_towers', function(){
         return;
     }
     var key_ids = [];
-    console.log({ "userID": this.userId, "state": "ok", "type": "Corporation" });
+
+
     Apikeys.find({ "userID": this.userId, "state": "ok", "type": "Corporation" }).forEach(function(key) {
         key_ids.push(key._id);
     });
