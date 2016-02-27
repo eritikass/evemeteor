@@ -7,8 +7,9 @@
 # npm packages
 packages
 
-# meteror up x deploy config
-.deploy
+# deploy stuff
+deploy_package.tar.gz
+deploy.sh
 
 # test stuff
 test.js
