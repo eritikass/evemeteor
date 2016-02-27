@@ -10,11 +10,12 @@
  * @param {string} vcode
  * @returns {string}
  */
-APIHELPERS.add_apikey = function(userID, keyid, vcode) {
+APIHELPERS.add_apikey = function(userID, keyid, vcode, name) {
     return Apikeys.insert({
         'userID': userID,
         'keyid': keyid,
         'vcode': vcode,
+        'keyName': name,
         'state': 'new',
         'created': new Date(),
     });

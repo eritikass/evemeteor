@@ -16,14 +16,19 @@ Template.apikey_add.onRendered(function () {
         submitHandler: function (event) {
             var $key_id = $('[name=eve_api_key_id]');
             var $v_code = $('[name=eve_api_v_code]');
+            var $name = $('[name=eve_api_name]');
+
+
 
             var key_id = parseInt($key_id.val(), 10);
-            var v_code = $v_code.val()
+            var v_code = $v_code.val();
+            var name = $name.val();
 
-            Meteor.call('add_apikey', key_id, v_code, function (err, res) {
+            Meteor.call('add_apikey', key_id, v_code, name, function (err, res) {
                 if (err || !res) {
                     //$key_id.val(key_id);
                     //$v_code.val(v_code);
+                    //$name.val(name);
 
                     validator.showErrors({
                         eve_api_key_id: "Unknown error when adding api key, please try again!"
@@ -35,6 +40,7 @@ Template.apikey_add.onRendered(function () {
 
             $key_id.val('');
             $v_code.val('');
+            $name.val('');
 
         }
     });

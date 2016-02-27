@@ -20,7 +20,7 @@ APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
         return;
     }
 
-    var key = Apikeys.findOne(tower.key_id);
+    var key = APIHELPERS.getApiKey(tower.key_id);
 
     if (!key) {
         APIHELPERS.debug('APIHELPERS.fetch_StarbaseDetail-ERR: ' + mongoId + ';  KEY NOT FOUND ' + tower.key_id);

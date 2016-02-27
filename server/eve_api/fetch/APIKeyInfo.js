@@ -6,7 +6,7 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
 
     APIHELPERS.debug('APIHELPERS.fetch_APIKeyInfo: ' + mongoId);
 
-    var key = Apikeys.findOne(mongoId);
+    var key = APIHELPERS.getApiKey(mongoId, true);
     if (!key || (key.state == 'process')) {
         return;
     }
@@ -78,13 +78,18 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
                 updated: new Date(),
                 characters: charIds,
                 info: info,
+                api_currentTime: APIHELPERS.evedate(result.currentTime),
+                api_cachedUntil: APIHELPERS.evedate(result.cachedUntil),
             }});
 
             APIHELPERS.debug('APIHELPERS.fetch_APIKeyInfo-OK: ' + mongoId + ' #(' + key.state + ') ' + result.type);
 
-            // fetch starbase list
-            if (result.type == 'Corporation') {
-                APIHELPERS.fetch_StarbaseList(key._id);
+            if ((result.type == 'Corporation')) {
+                // fetch starbase list
+                var starbase = key.StarbaseList && key.StarbaseList.api_cachedUntil;
+                if (!starbase || starbase < moment().subtract(30, 'minute').toDate()) {
+                    APIHELPERS.fetch_StarbaseList(key._id);
+                }
             }
 
             // if its first time ever, fetch some inital data

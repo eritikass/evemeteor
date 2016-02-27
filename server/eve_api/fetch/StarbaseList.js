@@ -4,7 +4,7 @@
 
 APIHELPERS.fetch_StarbaseList = function(mongoId) {
 
-    var key = Apikeys.findOne(mongoId);
+    var key = APIHELPERS.getApiKey(mongoId);
 
     APIHELPERS.debug('APIHELPERS.fetch_StarbaseList: ' + mongoId + ';  ' + (key ? key.type + '|' + key.state  : '' ) );
 
@@ -33,6 +33,13 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
             APIHELPERS.debug('APIHELPERS.fetch_StarbaseList: ' + mongoId + '; tower-count: ' + Object.keys(result.starbases).length);
 
 
+            Apikeys.update(key._id, {$set: {
+                StarbaseList: {
+                    api_currentTime: APIHELPERS.evedate(result.currentTime),
+                    api_cachedUntil: APIHELPERS.evedate(result.cachedUntil),
+                }
+            }});
+
             for (var posId in result.starbases) {
                 var tower = result.starbases[posId];
 
@@ -44,6 +51,8 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
                 tower.locationID = parseInt(tower.locationID, 10);
                 tower.moonID = parseInt(tower.moonID, 10);
                 tower.state_api = parseInt(tower.state, 10);
+
+                tower.corpName = key.corpName;
 
                 tower.state = 'ok';
                 tower.state_date = new Date();
