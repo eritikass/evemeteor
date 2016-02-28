@@ -7,13 +7,15 @@
             <div class="number input optional numeric stringish form-group" id="eve_api_key_key_id_input">
                 <label class=" control-label" for="eve_api_key_key_id">Key-ID:<abbr title="required">*</abbr></label>
                 <span class="form-wrapper">
-                    <input class="form-control" id="eve_api_key_key_id" name="eve_api_key_id" step="any" type="number" maxlength="10">
+                    <input class="form-control" id="eve_api_key_key_id" name="eve_api_key_id" step="any" type="number"
+                           maxlength="10">
                 </span>
             </div>
             <div class="string input required stringish form-group" id="eve_api_key_v_code_input">
                 <label class=" control-label" for="eve_api_key_v_code">V-Code:<abbr title="required">*</abbr></label>
                 <span class="form-wrapper">
-                    <input class="form-control" id="eve_api_key_v_code" maxlength="255" name="eve_api_v_code" type="text">
+                    <input class="form-control" id="eve_api_key_v_code" maxlength="255" name="eve_api_v_code"
+                           type="text">
                 </span>
             </div>
             <div class="string input required stringish form-group" id="eve_api_key_name">
@@ -22,24 +24,46 @@
                     <input class="form-control" id="eve_api_key_name" maxlength="30" name="eve_api_name" type="text">
                 </span>
             </div>
+            <div class="string input required stringish form-group" id="eve_api_key_group">
+                <label class=" control-label" for="eve_api_key_name">Access: </label>
+                <span class="form-wrapper">
+                   <div class="input-group">
+                       <select class="form-control" name="eve_apikey_access_group" id="eve_apikey_access_group">
+                           <option value="user"><strong>{{currentUser.profile.eveOnlineCharacterName}}</strong> (current user only)</option>
+                           {{#each getApiGroups}}
+                               <option value="{{_id}}">group: {{name}}</option>
+                            {{/each}}
+                       </select>
+                       <span class="input-group-btn">
+                            <a id="show_add_group_form" class="btn btn-default" href="{{pathFor route='apikey_group'}}" type="button"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Add access group!</a>
+                       </span>
+                   </div>
+                </span>
+
+            </div>
+
+
         </fieldset>
+
+
+        <div class="btn-group">
+            <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=1073741823"
+               class="btn btn-default btn-xs" target="_blank">Character all predefined</a>
+            <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=67108863"
+               class="btn btn-default btn-xs" target="_blank">Corporation all predefined</a>
+        </div>
+
+        <br><br>
+
         <fieldset class="form-actions">
             <input class="btn btn-primary" id="eve_api_key_submit_action" name="commit" type="submit"
                    value="Add Api Key">
         </fieldset>
     </form>
-    <br>
-
-    <div class="btn-group">
-        <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=1073741823"
-           class="btn btn-default btn-xs" target="_blank">Character all predefined</a>
-        <a href="https://community.eveonline.com/support/api-key/CreatePredefined?accessMask=67108863"
-           class="btn btn-default btn-xs" target="_blank">Corporation all predefined</a>
-    </div>
 
     <br>
 
-    <br>
-    <a class="btn btn-default" href="{{pathFor route='apikeys'}}">Back</a>
+    {{> apikeys_nav}}
+
 
 </template>

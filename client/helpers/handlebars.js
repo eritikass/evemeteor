@@ -5,12 +5,33 @@
  * Created by eritikass on 24/02/16.
  */
 
-Handlebars.registerHelper('currentRouteName', function(myArgument){
+var getRouteName = function(){
     try {
         return Router.current().route.getName();
     } catch (e) {
         return 'notFound';
     }
+};
+
+Handlebars.registerHelper('currentRouteName', getRouteName);
+
+Handlebars.registerHelper('isRoute', function(routeName){
+    return getRouteName() == routeName;
+});
+
+Handlebars.registerHelper('disableIfRoute', function(routeName, type){
+    if (getRouteName() != routeName) {
+        return '';
+    }
+    return 'disabled';
+});
+
+Handlebars.registerHelper('userNotMe', function(userId){
+    return (!Meteor.userId() || Meteor.userId() != userId);
+});
+
+Handlebars.registerHelper('equals', function(a, b) {
+    return (a == b);
 });
 
 

@@ -1,0 +1,7 @@
+<template name="apikeys_nav">
+
+    <a class="btn btn-default" {{disableIfRoute 'apikeys'}} href="{{pathFor route='apikeys'}}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> List Apikeys</a>
+    <a class="btn btn-default" {{disableIfRoute 'apikey_add'}} href="{{pathFor route='apikey_add'}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Apikeys</a>
+    <a class="btn btn-default" {{disableIfRoute 'apikey_group'}} href="{{pathFor route='apikey_group'}}"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Api Groups</a>
+
+</template>

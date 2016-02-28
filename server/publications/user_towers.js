@@ -8,8 +8,8 @@ Meteor.publish('user_towers', function(){
     }
     var key_ids = [];
 
-
-    Apikeys.find({ "userID": this.userId, "state": "ok", "type": "Corporation" }).forEach(function(key) {
+    APIHELPERS.get_user_keys(this.userId, {"state": "ok", "type": "Corporation"}).forEach(function(key) {
+        console.log(key._id);
         key_ids.push(key._id);
     });
 

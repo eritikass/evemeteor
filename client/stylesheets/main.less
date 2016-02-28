@@ -33,10 +33,38 @@ body {
 }
 
 
-.page-apikey_add {
+.page-apikey_add, .page-apikey_group {
   form label.error {
     color: red;
   }
+
+  #eve_api_key_add_group .input-group-btn {
+    vertical-align: top;
+  }
+
+  .alert {
+     > span {
+      padding-left: 10px;
+    }
+  }
+
+
+
+}
+
+
+.page-apikey_group {
+
+  h4.panel-title {
+    height: 32px;
+
+    .groupadd {
+      max-width: 350px;
+      float: right;
+      margin-right: 10px;
+    }
+  }
+
 }
 
 .page-apikeys {

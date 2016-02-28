@@ -25,6 +25,10 @@ $.validator.setDefaults({
             maxlength: 200,
             regex: /^\w+$/,
         },
+        eve_api_addgroup: {
+            minlength: 5,
+            maxlength: 30,
+        }
     },
     messages: {
         eve_api_key_id: {

@@ -8,5 +8,10 @@ Meteor.publish('user_apikeys', function(){
     if (!this.userId) {
         return;
     }
-    return Apikeys.find({ userID: this.userId });
+    var groupIds = [];
+    Apikeys_groups.find({members: {$in: [this.userId]}}).forEach(function(group) {
+        groupIds.push(group._id);
+    });
+
+    return Apikeys.find({ $or :[ {userID:this.userId}, { group: { $in: groupIds } } ]});
 });

@@ -4,7 +4,7 @@
 
 Template.apikeys.helpers({
     'getApikeys': function() {
-        Meteor.subscribe('user_apikeys')
+        Meteor.subscribe('user_apikeys');
         return Apikeys.find({}, {sort: {created: -1}});
     },
     'stateGymp': function(state, type) {

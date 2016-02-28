@@ -1,0 +1,85 @@
+<template name="apikey_group">
+
+
+        <h1>Api Key Groups</h1>
+
+        <br>
+
+        <form class="formtastic eve_api_key_add_group" id="eve_api_key_add_group">
+            <div class="string input required stringish form-group">
+                <label class="control-label" for="eve_api_addgroup">group name: </label>
+
+                <div class="input-group">
+                    <input type="text" name="eve_api_addgroup" maxlength="29" class="form-control" placeholder="Name of your new api access group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            ADD
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                      </span>
+                </div>
+            </div>
+        </form>
+
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+        {{#each getMyApiGroups}}
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" >
+                            {{name}}
+
+
+                            <button class="btn btn-danger pull-right" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
+                            <div class="input-group groupadd">
+                               <input id="gr_{{_id}}" type="text" class="form-control" placeholder="User name...">
+                               <span class="input-group-btn">
+                                 <button data-element="gr_{{_id}}" class="btn btn-default add-user" type="button">Add to group</button>
+                               </span>
+                            </div>
+
+
+
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+
+                        {{#each getGroupMembers}}
+
+                            <div class="alert alert-info" role="alert">
+                                <img src="//image.eveonline.com/Character/{{eveOnlineCharacterId}}_32.jpg"/>
+                                <span>{{eveOnlineCharacterName}}</span>
+
+                                {{#if userNotMe userId}}
+                                    <button class="btn btn-danger pull-right" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</button>
+                                {{/if}}
+
+                            </div>
+
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+
+        {{/each}}
+
+    </div>
+
+
+
+        <br>
+
+        {{> apikeys_nav}}
+
+</template>
+
+
