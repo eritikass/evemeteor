@@ -18,6 +18,8 @@
             <th>Access Mask</th>
             <th>Info</th>
             <th>Updated</th>
+            <th>Access</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +34,10 @@
                 <td>{{accessMask}}</td>
                 <td>{{keyInfo}}</td>
                 <td>{{formatDate updated}}</td>
+                <th>{{keyAccess}}</th>
+                <th>{{#unless userNotMe userID}}
+                    <button type="button" class="btn btn-danger remove-apikey"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                {{/unless}}</th>
             </tr>
         {{/each}}
         </tbody>

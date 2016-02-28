@@ -13,5 +13,10 @@ Meteor.publish('user_apikeys', function(){
         groupIds.push(group._id);
     });
 
-    return Apikeys.find({ $or :[ {userID:this.userId}, { group: { $in: groupIds } } ]});
+    var query = {$and: [
+        { $or :[ {userID:this.userId}, { group: { $in: groupIds } } ]},
+        { $nor: [ {state: 'user_removed'} ] }
+    ]};
+
+    return Apikeys.find(query);
 });

@@ -31,6 +31,15 @@ Template.apikey_group.events({
                 console.log(err, res);
             });
         }
+
+        $input.val('');
+    },
+    'click .remove-from-group': function(event) {
+        var groupId = $(event.target).closest('.apikeygroup').data('groupid');
+        var eveChar = this.eveOnlineCharacterName;
+        Meteor.call('api_group_member', groupId, eveChar, 'remove', function(err, res) {
+            console.log(err, res);
+        });
     }
 });
 

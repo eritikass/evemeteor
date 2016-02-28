@@ -27,7 +27,7 @@
 
         {{#each getMyApiGroups}}
 
-            <div class="panel panel-default">
+            <div class="panel panel-default apikeygroup" data-groupid="{{_id}}">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
                         <a role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" >
@@ -59,7 +59,7 @@
                                 <span>{{eveOnlineCharacterName}}</span>
 
                                 {{#if userNotMe userId}}
-                                    <button class="btn btn-danger pull-right" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</button>
+                                    <button class="btn btn-danger remove-from-group pull-right" type="submit"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</button>
                                 {{/if}}
 
                             </div>
