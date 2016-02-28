@@ -53,6 +53,7 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
                 tower.state_api = parseInt(tower.state, 10);
 
                 tower.corpName = key.corpName;
+                tower.corporationID = key.corporationID;
 
                 tower.state = 'ok';
                 tower.state_date = new Date();

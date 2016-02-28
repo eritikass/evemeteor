@@ -56,6 +56,7 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
 
                     Apikeys.update(key._id, {$set: {
                         'corpName': char.corporationName,
+                        'corporationID': char.corporationID,
                     }});
 
                 } else {

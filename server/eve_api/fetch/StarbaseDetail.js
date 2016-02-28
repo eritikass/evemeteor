@@ -5,9 +5,9 @@
 
 APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
 
-    APIHELPERS.debug('APIHELPERS.fetch_StarbaseDetail: ' + mongoId);
-
     var tower = Towers.findOne(mongoId);
+
+    APIHELPERS.debug('APIHELPERS.fetch_StarbaseDetail: ' + mongoId + (tower ? ' corpID>'+ tower.corporationID : ''));
 
     if (!tower) {
         return;
@@ -20,11 +20,14 @@ APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
         return;
     }
 
-    var key = APIHELPERS.getApiKey(tower.key_id);
+    var key = Apikeys.findOne({
+        'corporationID': tower.corporationID,
+        'state': { $in: ['ok', 'process']}
+    });
 
     if (!key) {
-        APIHELPERS.debug('APIHELPERS.fetch_StarbaseDetail-ERR: ' + mongoId + ';  KEY NOT FOUND ' + tower.key_id);
-        Towers.update({key_id: tower.key_id}, {$set: {state: 'deleted'}});
+        APIHELPERS.debug('APIHELPERS.fetch_StarbaseDetail-ERR: ' + mongoId + ';  KEY NOT FOUND for CORP> ' + tower.corporationID);
+        Towers.update({_id: tower._id}, {$set: {state: 'keynotfound'}});
         return;
     }
 

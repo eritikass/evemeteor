@@ -6,15 +6,15 @@ Meteor.publish('user_towers', function(){
     if (!this.userId) {
         return;
     }
-    var key_ids = [];
+    var corpIds = [];
 
     APIHELPERS.get_user_keys(this.userId, {"state": "ok", "type": "Corporation"}).forEach(function(key) {
-        key_ids.push(key._id);
+        corpIds.push(key.corporationID);
     });
 
-    if (key_ids.length == 0) {
+    if (corpIds.length == 0) {
         return;
     }
 
-    return Towers.find({key_id: {$in: key_ids}});
+    return Towers.find({corporationID: {$in: _.uniq(corpIds)}});
 });

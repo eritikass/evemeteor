@@ -23,7 +23,6 @@ SyncedCron.add({
         return parser.text('every 5 minute');
     },
     job: function() {
-
         var dateMin = moment().subtract(30, 'minute').toDate();
         var res = {};
 
@@ -34,7 +33,7 @@ SyncedCron.add({
         });
 
         // update old towers
-        Towers.find({api_cachedUntil: { $exists: true }, "state": "ok", api_cachedUntil: {$lt: dateMin}}, {sort: {state_date: 1}, limit: 30}).forEach(function(tower) {
+        Towers.find({api_cachedUntil: { $exists: true }, "state": "ok", api_cachedUntil: {$lt: dateMin}}, {sort: {state_date: 1}, limit: 50}).forEach(function(tower) {
             res[tower._id] = 'old';
             APIHELPERS.fetch_StarbaseDetail(tower._id);
         });
@@ -59,7 +58,7 @@ SyncedCron.add({
 
         // update old api keys
         var dateMin = moment().subtract(30, 'minute').toDate();
-        Apikeys.find({api_cachedUntil: {$lt: dateMin}}, {sort: {state_date: 1}, limit: 50}).forEach(function(key) {
+        Apikeys.find({api_cachedUntil: {$lt: dateMin}, 'state': 'ok'}, {sort: {state_date: 1}, limit: 50}).forEach(function(key) {
             res[key._id] = 'old';
             APIHELPERS.fetch_APIKeyInfo(key._id);
         });
