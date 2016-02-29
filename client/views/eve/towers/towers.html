@@ -1,17 +1,17 @@
 <template name="towers">
 
 
-    <table class="table table-bordered">
+    <table class="table table-bordered listtowers">
 
         <thead>
         <tr>
-            <th colspan="1">#</th>
-            <th>System</th>
-            <th>Planet</th>
-            <th>Moon</th>
-            <th>Region</th>
-            <th>towerType</th>
-            <th>corp</th>
+            <th data-order="fuelLeftUntil" class="activeOrder" colspan="1"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>#</th>
+            <th data-order="systemName">System</th>
+            <th data-order="celdata.planet">Planet</th>
+            <th data-order="celdata.moon">Moon</th>
+            <th data-order="regionName">Region</th>
+            <th data-order="typeName">Tower</th>
+            <th data-order="corpName">Corp</th>
             <th>...</th>
         </tr>
         </thead>
@@ -24,8 +24,8 @@
                 <td>{{celdata.planet}}</td>
                 <td>{{celdata.moon}}</td>
                 <td>{{regionName}}</td>
-                <td>{{getTowerTypeName typeID}}</td>
-                <td>{{getCorpName}}</td>
+                <td>{{shorternTowerName typeName}}</td>
+                <td>{{corpName}}</td>
                 <td>{{_id}}</td>
             </tr>
         {{/each}}

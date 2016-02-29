@@ -62,6 +62,9 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
                 tower.stateTimestamp = APIHELPERS.evedate(tower.stateTimestamp);
                 tower.onlineTimestamp = APIHELPERS.evedate(tower.onlineTimestamp);
 
+                var pos = POS_DATA[tower.typeID];
+                tower.typeName = pos && pos.typeName || 'typeID: ' + tower.typeID;
+
                 var dbTower = Towers.findOne({itemID: tower.itemID});
                 if (!dbTower) {
                     Towers.insert(tower);
