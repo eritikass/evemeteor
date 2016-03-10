@@ -31,8 +31,6 @@ APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
         return;
     }
 
-    var eveonlinejs = APIHELPERS.getEveApi();
-
     var args = {
         keyID: key.keyid,
         vCode: key.vcode,

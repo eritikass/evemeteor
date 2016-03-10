@@ -14,7 +14,6 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
 
     try {
 
-        var eveonlinejs = APIHELPERS.getEveApi();
         var transliteration = Meteor.npmRequire('transliteration');
 
         var args = {

@@ -5,7 +5,7 @@
 .idea
 
 # npm packages
-packages
+packages/npm-container
 
 # deploy stuff
 deploy_package.tar.gz

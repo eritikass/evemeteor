@@ -19,8 +19,6 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
 
     try {
 
-        var eveonlinejs = APIHELPERS.getEveApi();
-
         var args = {
             keyID: key.keyid,
             vCode: key.vcode,
