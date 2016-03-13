@@ -37,7 +37,7 @@ APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
         itemID: tower.itemID,
     };
 
-    eveonlinejs.fetch('corp:StarbaseDetail', args, Meteor.bindEnvironment(function (err, result) {
+    eveonlinejs.fetch('corp:StarbaseDetail', args, function (err, result) {
 
         if (err) {
             Towers.update(tower._id, {$set: {
@@ -85,6 +85,6 @@ APIHELPERS.fetch_StarbaseDetail = function (mongoId) {
         }});
 
 
-    }));
+    });
 
 }

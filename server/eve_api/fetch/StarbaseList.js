@@ -23,7 +23,7 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
 
         Towers.update({key_id: key._id}, {$set: {state: 'deleted'}});
 
-        eveonlinejs.fetch('corp:StarbaseList', args, Meteor.bindEnvironment(function (err, result) {
+        eveonlinejs.fetch('corp:StarbaseList', args, function (err, result) {
             if (err) {
                 APIHELPERS.debug('APIHELPERS.fetch_StarbaseList-APIERR: ' + mongoId + ';  ' + err);
                 return;
@@ -112,7 +112,7 @@ APIHELPERS.fetch_StarbaseList = function(mongoId) {
 
             }
 
-        }));
+        });
 
     } catch (e) {
         console.log(e);

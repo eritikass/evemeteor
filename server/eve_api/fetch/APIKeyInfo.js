@@ -24,7 +24,7 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
             vCode: key.vcode,
         };
 
-        eveonlinejs.fetch('account:APIKeyInfo', args, Meteor.bindEnvironment(function (err, result) {
+        eveonlinejs.fetch('account:APIKeyInfo', args, function (err, result) {
             if (err) {
                 APIHELPERS.debug('APIHELPERS.fetch_APIKeyInfo-APIERR(code:' + err.code + '): ' + mongoId);
                 Apikeys.update(key._id, {$set: {
@@ -96,7 +96,7 @@ APIHELPERS.fetch_APIKeyInfo = function(mongoId) {
                 //APIHELPERS.update_characters(key._id);
             }
 
-        }));
+        });
 
 
     } catch (e) {
